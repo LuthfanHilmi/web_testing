@@ -16,10 +16,10 @@ driver = webdriver.Chrome(service=servis)
 load_website = WebDriverWait(driver, 20)
 
 #setup exls
-wb = Workbook()
-ws = wb.active
-ws.title("laporan_testing_filter")
-ws.append([])
+# wb = Workbook()
+# ws = wb.active
+# ws.title("laporan_testing_filter")
+# ws.append([])
 
 
 try :
@@ -28,20 +28,17 @@ try :
     klik_careers = load_website.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a[navigate='careers']"))
     )
-    
     klik_careers.click()
-    # print("Berhasil masuk ke bagian careers")
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", klik_careers)
 
-    # filter klik AI Researcher dan All location
+    # filter menu AI Researcher dan All location
     filter1 = load_website.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "option[value='AI Researcher']"))
-    )
+    ).click()
+
     filterLokasi = load_website.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "option[value='All Location']"))
-    )
-    
-    filter1.click()
-    filterLokasi.click()
+    ).click()
 
     time.sleep(60)
     driver.quit()
