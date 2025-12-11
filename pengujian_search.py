@@ -21,6 +21,8 @@ def save_step(status, deskripsi, driver, laporan_xls):
     # masukkan ke excel
     laporan_xls.append([status, deskripsi, screenshot_path])
 
+    
+
 #setup chromedriver
 servis = Service(executable_path='chromedriver.exe')
 driver = webdriver.Chrome(service=servis)
@@ -29,7 +31,7 @@ load_web = WebDriverWait(driver, 20)
 #setup excl
 wb = Workbook()
 ws = wb.active
-ws.title = "Test Report"
+ws.title = "laporang fitur search"
 ws.append(["Status", "Deskripsi", "Screenshot"])
 
 
