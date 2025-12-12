@@ -3,7 +3,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from openpyxl import Workbook
 import time
 import os
 
@@ -14,22 +13,15 @@ driver = webdriver.Chrome(service=servis)
 load_web = WebDriverWait(driver, 20)
 
 
-# setup excl
-wb = Workbook()
-ws = wb.active
-ws.title = "hasil tes fitur barita"
-ws.append(["Status", "Deskripsi", "Screenshot"])
 
-
-def save_step(status, deskripsi, driver, laporan) :
+def shoot(driver) :
     os.makedirs("hasil_screenshot", exist_ok=True)
-    
-    timesfile = time.strftime("%H%M%S")
-    screenshot_name = f"fiturBerita{timesfile}.png"
+
+    timeFile = time.strftime("%H%M%S")
+    screenshot_name = f"Akses_fitur_berita_{timeFile}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
     driver.save_screenshot(screenshot_path)
-    laporan.append([status, deskripsi, screenshot_path])
 
 
 try:
@@ -40,8 +32,12 @@ try:
     )
     time.sleep(5)
     news_page.click()
-    time.sleep(2)
-    save_step("Berhasil", "Berhasil masuk ke halaman berita", driver, ws)
+    print(":: Melakukan navigasi ke halaman News")
+    
+    time.sleep(3)
+    shoot(driver)
+    time.sleep(3)
+    
 
 
 
@@ -50,9 +46,10 @@ try:
     )
     time.sleep(1)
     openNews.click()
+    print(":: Mengakses Recent News Post ")
     time.sleep(5)
+    shoot(driver)
     
-    wb.save("Laporan_tesing_berita.xlsx")
     driver.quit()
 except:
     print(f"Terjadi eror")

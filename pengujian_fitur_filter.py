@@ -46,35 +46,36 @@ try :
     klik_careers = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "div[class='max-w-7xl mx-auto'] li:nth-child(5) a:nth-child(1)"))
     )
-    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", klik_careers)
-    time.sleep(5)
+    time.sleep(3)
     klik_careers.click()
     time.sleep(5)
-    save_step("Berhasil", "Mengakses halaman careers", driver, ws)
+    save_step("Berhasil", "Melakukan navigasi ke halaman careers", driver, ws)
 
 
 
     elemenFilterPosition = driver.find_element(By.CSS_SELECTOR, "div[class='my-12 mx-auto grid gap-4 items-center flex grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'] div:nth-child(2) select:nth-child(1)")
+    driver.execute_script("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", elemenFilterPosition)
     time.sleep(1)
     elemenFilterPosition.click()
     save_step("Berhasil", "Mekakukan klik pada menu All Position", driver, ws)
     time.sleep(2)
-    selectElement1 = Select(elemenFilterPosition)
-    selectElement1.select_by_visible_text("Data Analyst")
-    time.sleep(2)
+    selectElement1 = Select(elemenFilterPosition).select_by_visible_text("Data Analyst")
+    time.sleep(1)
+    save_step("Berhasil", "Memilih menu Data Analyst", driver, ws)
 
 
     elementFilterLocation = driver.find_element(By.CSS_SELECTOR, "div:nth-child(3) select:nth-child(1)")
     time.sleep(1)
     elemenFilterPosition.click()
+    save_step("Berhasil", "Mekakukan klik pada menu Location", driver, ws)
     time.sleep(2)
-    selectElement2 = Select(elementFilterLocation)
-    selectElement2.select_by_visible_text("South Tangerang")
-    time.sleep(5)
-
+    selectElement2 = Select(elementFilterLocation).select_by_visible_text("South Tangerang")
+    time.sleep(1)
+    save_step("Berhasil", "Memilih menu South Tangerang", driver, ws)
+    time.sleep(1)
     
-
-
+    wb.save("Laporan_testing_filter_sort.xlsx")
+    driver.quit()
 except: 
     driver.quit()
     exit()

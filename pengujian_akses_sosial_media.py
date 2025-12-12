@@ -5,7 +5,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from openpyxl import Workbook
 import time
 import os
 
@@ -16,26 +15,23 @@ load_web = WebDriverWait(driver, 20)
 act = ActionChains(driver)
 
 
-wb = Workbook()
-ws = wb.active
-ws.title = "Hasil tes akses sosmed"
-ws.append(["Status, Deskripsi, Screenshot"])
-
-def save_step(status, deskripsi, driver, laporan) :
+def shoot(driver) :
     os.makedirs("hasil_screenshot", exist_ok=True)
 
-    timeFile = time.strftime("%H%M%S%")
-    screenshot_name = f"aksesSosmed{timeFile}.png"
+    timeFile = time.strftime("%H%M%S")
+    screenshot_name = f"Akses_sosmed_{timeFile}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
     driver.save_screenshot(screenshot_path)
-    laporan.append([status, deskripsi, screenshot_path])
 
 
 
 try:
     driver.get("https://indonesiaindicator.com/home")
-    time.sleep(10)
+    time.sleep(5)
+    print("Berhasil akses website Indonesia Indicator")
+    
+
 
 
     instagram = load_web.until(
@@ -43,15 +39,19 @@ try:
     )
     assert instagram.is_displayed()
     act.move_to_element(instagram).send_keys(Keys.END).perform()
-    time.sleep(3)
-    save_step("Berhasil", "Scroll bagiann bawah untuk klik instagram", driver, ws)
+    print("Melakukan akses ke instagram PT Indonesia Indicator")
+
+    time.sleep(5)
+    shoot(driver)
+    time.sleep(5)
 
     
     time.sleep(5)
     instagram.click()
+    time.sleep(5)
+    shoot(driver)
     time.sleep(10)
-    save_step("Berhasil", "Berhasil masuk ke instagram", driver, ws)
-    wb.save("laporan_akses_sosmed.xlsx")
+
     driver.quit()
 except:
     print(f"Terjadi eror")

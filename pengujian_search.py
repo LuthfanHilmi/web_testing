@@ -36,14 +36,12 @@ ws.append(["Status", "Deskripsi", "Screenshot"])
 
 try:
     driver.get("https://indonesiaindicator.com/home")
-    save_step("BERHASIL", "Berhasil membuka website", driver, ws)
 
-    
     careers = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a[navigate='careers']"))
     )
     careers.click()
-    save_step("BERHASIL", "Berhasil membuka menu Careers", driver, ws)
+    save_step("BERHASIL", "Membuka halaman Careers", driver, ws)
 
     search1 = load_web.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "searchbar-input"))
@@ -65,7 +63,7 @@ try:
     keyword = "cyber"
     search2.send_keys(keyword)
     save_step("GAGAL", f"inputan {keyword} tidak ditemukan", driver, ws)
-    time.sleep(10)
+    time.sleep(1)
 
     wb.save("laporan_testing_search.xlsx")
     driver.quit()
