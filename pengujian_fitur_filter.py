@@ -31,14 +31,18 @@ try :
     klik_careers.click()
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", klik_careers)
 
-    # filter menu AI Researcher dan All location
-    filter1 = load_website.until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, "option[value='AI Researcher']"))
-    ).click()
+    klikFilter = load_website.until(
+        EC.element_to_be_clickable((By.XPATH, "//select[@class='dropdown-style' and count(child::option) > 3]"))
+    )
 
-    filterLokasi = load_website.until(
-        EC.element_to_be_clickable((By.CLASS_NAME, "option[value='All Location']"))
-    ).click()
+    # filter menu AI Researcher dan All location
+    # filter1 = load_website.until(
+    #     EC.element_to_be_clickable((By.CSS_SELECTOR, "option[value='AI Researcher']"))
+    # ).click()
+
+    # filterLokasi = load_website.until(
+    #     EC.element_to_be_clickable((By.CLASS_NAME, "option[value='All Location']"))
+    # ).click()
 
     time.sleep(60)
     driver.quit()
