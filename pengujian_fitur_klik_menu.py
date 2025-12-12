@@ -45,7 +45,7 @@ def open_menu():
 driver.get("https://indonesiaindicator.com/home")
 time.sleep(2)
 
-#list submenu
+#letak class 
 submenus = [
     "#mobile-menu a[navigate='who-we-are']",
     "#mobile-menu a[navigate='strategic-framework']",
@@ -54,7 +54,7 @@ submenus = [
     "#mobile-menu a[navigate='news']",
     "#mobile-menu a[navigate='i2-academy']"
 ]
-
+#nama submenu
 nama_submenu = [
     "Who We Are",
     "Strategic Framework",
@@ -76,18 +76,12 @@ for selector, nama in zip(submenus, nama_submenu):
         # old_url = driver.current_url
         submenu.click()
 
-        # # Tunggu halaman berubah
-        # try:
-        #     load_web.until(EC.url_changes(old_url))
-        # except:
-        #     pass
-
         time.sleep(1)
         save_step("Berhasil", f"Berhasil masuk ke menu {nama}", driver, ws)
 
     except Exception as e:
         print(f"Error saat klik {nama}: {e}")
         save_step("Error", f"Gagal masuk ke menu {nama}: {e}", driver, ws)
-        continue  # Lanjutkan loop → tidak menghentikan script
+        continue
     finally:
         wb.save("laporan_testing_menu.xlsx")
