@@ -16,8 +16,9 @@ def save_step(status, deskripsi, driver, laporan_xls):
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
 
-    driver.save_screenshot(screenshot_path) 
-    
+    driver.save_screenshot(screenshot_path) #mengambil gambar
+
+    # masukkan ke excel
     laporan_xls.append([status, deskripsi, screenshot_path])
 
     
@@ -35,16 +36,18 @@ ws.append(["Status", "Deskripsi", "Screenshot"])
 
 
 try:
+    #buka url
     driver.get("https://indonesiaindicator.com/home")
     save_step("BERHASIL", "Berhasil membuka website", driver, ws)
 
-    
+    #klik navigasi careers
     careers = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a[navigate='careers']"))
     )
     careers.click()
     save_step("BERHASIL", "Berhasil membuka menu Careers", driver, ws)
 
+    #input keyword search bar benar
     search1 = load_web.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "searchbar-input"))
     )
@@ -55,7 +58,7 @@ try:
     save_step("BERHASIL", f"Berhasil melakukan input {keyword}", driver, ws)
 
     time.sleep(2)
-
+    #input keyword search bar salah
     search2 = load_web.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "searchbar-input"))
     )
