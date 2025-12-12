@@ -39,7 +39,7 @@ def open_menu():
         EC.element_to_be_clickable((By.CLASS_NAME, "nav-toggle"))
     )
     btn_menu.click()
-    time.sleep(1)
+    time.sleep(4)
 
 
 driver.get("https://indonesiaindicator.com/home")
@@ -69,11 +69,11 @@ for selector, nama in zip(submenus, nama_submenu):
     try:
         open_menu()
 
+        time.sleep(2)
         submenu = load_web.until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
         )
 
-        # old_url = driver.current_url
         submenu.click()
 
         time.sleep(1)
