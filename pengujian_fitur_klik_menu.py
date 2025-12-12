@@ -16,7 +16,7 @@ load_web = WebDriverWait(driver, 20)
 #setup xls
 wb = Workbook()
 ws = wb.active
-ws.title = "laporang klik menu"
+ws.title = "Hasil tes klik menu"
 ws.append(["Status", "Deskripsi", "Screenshot"])
 
 

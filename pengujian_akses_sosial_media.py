@@ -18,7 +18,7 @@ act = ActionChains(driver)
 
 wb = Workbook()
 ws = wb.active
-ws.title = "laporan akses sosmed"
+ws.title = "Hasil tes akses sosmed"
 ws.append(["Status, Deskripsi, Screenshot"])
 
 def save_step(status, deskripsi, driver, laporan) :

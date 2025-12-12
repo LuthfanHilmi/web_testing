@@ -17,7 +17,7 @@ load_web = WebDriverWait(driver, 20)
 # setup excl
 wb = Workbook()
 ws = wb.active
-ws.title = "laporan fitur barita"
+ws.title = "hasil tes fitur barita"
 ws.append(["Status", "Deskripsi", "Screenshot"])
 
 
