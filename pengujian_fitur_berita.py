@@ -50,6 +50,7 @@ try:
     time.sleep(5)
     shoot(driver)
     
+    print(":: Selesai")
     driver.quit()
 except:
     print(f"Terjadi eror")

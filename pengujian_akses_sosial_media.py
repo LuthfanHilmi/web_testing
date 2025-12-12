@@ -29,7 +29,7 @@ def shoot(driver) :
 try:
     driver.get("https://indonesiaindicator.com/home")
     time.sleep(5)
-    print("Berhasil akses website Indonesia Indicator")
+    print(":: Berhasil akses website Indonesia Indicator")
     
 
 
@@ -39,22 +39,22 @@ try:
     )
     assert instagram.is_displayed()
     act.move_to_element(instagram).send_keys(Keys.END).perform()
-    print("Melakukan akses ke instagram PT Indonesia Indicator")
+    print(":: Melakukan akses ke instagram PT Indonesia Indicator")
 
     time.sleep(5)
     shoot(driver)
-    time.sleep(5)
 
     
     time.sleep(5)
     instagram.click()
-    time.sleep(5)
-    shoot(driver)
     time.sleep(10)
+    shoot(driver)
+    time.sleep(1)
 
+    print(":: Selesai")
     driver.quit()
 except:
-    print(f"Terjadi eror")
+    print(f":: Terjadi eror")
 
 
 
