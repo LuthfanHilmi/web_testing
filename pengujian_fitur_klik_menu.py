@@ -43,7 +43,7 @@ def open_menu():
 
 
 driver.get("https://indonesiaindicator.com/home")
-time.sleep(2)
+time.sleep(5)
 
 #letak class 
 submenus = [
