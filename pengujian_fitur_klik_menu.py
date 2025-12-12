@@ -39,11 +39,10 @@ def open_menu():
         EC.element_to_be_clickable((By.CLASS_NAME, "nav-toggle"))
     )
     btn_menu.click()
-    time.sleep(4)
 
 
 driver.get("https://indonesiaindicator.com/home")
-time.sleep(5)
+time.sleep(10)
 
 #letak class 
 submenus = [
@@ -69,14 +68,15 @@ for selector, nama in zip(submenus, nama_submenu):
     try:
         open_menu()
 
-        time.sleep(2)
+        time.sleep(5)
         submenu = load_web.until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
         )
 
+        time.sleep(3)
         submenu.click()
 
-        time.sleep(1)
+        time.sleep(3)
         save_step("Berhasil", f"Berhasil masuk ke menu {nama}", driver, ws)
 
     except Exception as e:
