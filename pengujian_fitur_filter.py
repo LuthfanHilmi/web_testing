@@ -29,7 +29,7 @@ def save_step(status, deskripsi, driver, laporan_xls):
     os.makedirs("hasil_screenshot", exist_ok=True)
 
     timestamp = time.strftime("%H%M%S")
-    screenshot_name = f"screenshot_fitur_sort{timestamp}.png"
+    screenshot_name = f"screenshot_fitur_Filter_{timestamp}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
     driver.save_screenshot(screenshot_path) 
@@ -66,7 +66,7 @@ try :
 
     elementFilterLocation = driver.find_element(By.CSS_SELECTOR, "div:nth-child(3) select:nth-child(1)")
     time.sleep(1)
-    elemenFilterPosition.click()
+    elementFilterLocation.click()
     save_step("Berhasil", "Mekakukan klik pada menu Location", driver, ws)
     time.sleep(2)
     selectElement2 = Select(elementFilterLocation).select_by_visible_text("South Tangerang")

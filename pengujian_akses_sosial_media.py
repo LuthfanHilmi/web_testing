@@ -19,7 +19,7 @@ def shoot(driver) :
     os.makedirs("hasil_screenshot", exist_ok=True)
 
     timeFile = time.strftime("%H%M%S")
-    screenshot_name = f"Akses_sosmed_{timeFile}.png"
+    screenshot_name = f"screenshot_Akses_sosmed_{timeFile}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
     driver.save_screenshot(screenshot_path)
@@ -45,9 +45,11 @@ try:
     shoot(driver)
 
     
-    time.sleep(5)
     instagram.click()
-    time.sleep(10)
+    
+    tab = driver.window_handles
+    driver.switch_to.window(tab[-1])
+    time.sleep(15)
     shoot(driver)
     time.sleep(1)
 

@@ -12,7 +12,7 @@ def save_step(status, deskripsi, driver, laporan_xls):
     os.makedirs("hasil_screenshot", exist_ok=True)
 
     timestamp = time.strftime("%H%M%S")
-    screenshot_name = f"screenshot_{timestamp}.png"
+    screenshot_name = f"screenshot_Search_{timestamp}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
 
@@ -36,18 +36,20 @@ ws.append(["Status", "Deskripsi", "Screenshot"])
 
 try:
     driver.get("https://indonesiaindicator.com/home")
+    time.sleep(5)
 
     careers = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a[navigate='careers']"))
     )
     careers.click()
+    time.sleep(3)
     save_step("BERHASIL", "Membuka halaman Careers", driver, ws)
 
     search1 = load_web.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "searchbar-input"))
     )
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", search1)
-
+    time.sleep(2)
     keyword = "Data Engineer"
     search1.send_keys(keyword)
     save_step("BERHASIL", f"Berhasil melakukan input {keyword}", driver, ws)

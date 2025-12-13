@@ -24,7 +24,7 @@ def save_step(status, deskripsi, driver, laporan_xls):
     os.makedirs("hasil_screenshot", exist_ok=True)
 
     timestamp = time.strftime("%H%M%S")
-    screenshot_name = f"screenshot_{timestamp}.png"
+    screenshot_name = f"screenshot_KliK_Menu_{timestamp}.png"
     screenshot_path = os.path.join("hasil_screenshot", screenshot_name)
 
     
@@ -42,7 +42,7 @@ def open_menu():
 
 
 driver.get("https://indonesiaindicator.com/home")
-time.sleep(10)
+time.sleep(5)
 
 #letak class 
 submenus = [
@@ -67,17 +67,18 @@ for selector, nama in zip(submenus, nama_submenu):
 
     try:
         open_menu()
+        save_step("Berhasil", f"Melakukan klik Menu {nama}", driver, ws)
 
-        time.sleep(5)
+        time.sleep(3)
         submenu = load_web.until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
         )
 
-        time.sleep(3)
         submenu.click()
 
         time.sleep(3)
         save_step("Berhasil", f"Berhasil masuk ke menu {nama}", driver, ws)
+        time.sleep(2)
 
     except Exception as e:
         print(f"Error saat klik {nama}: {e}")
