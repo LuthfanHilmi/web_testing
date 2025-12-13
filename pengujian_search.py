@@ -72,4 +72,3 @@ try:
 
 except Exception as e:
     save_step("Eror", f"Terjadi eror: {str(e)}", driver, ws)
-

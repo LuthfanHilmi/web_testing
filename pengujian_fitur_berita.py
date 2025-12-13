@@ -37,6 +37,7 @@ try:
     time.sleep(3)
     
 
+    
     openNews = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, ".me-2.text-red-500.font-semibold"))
     )

@@ -32,8 +32,6 @@ try:
     print(":: Berhasil akses website Indonesia Indicator")
     
 
-
-
     instagram = load_web.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "div[class='py-5 px-10'] a:nth-child(1) svg"))
     )
@@ -56,7 +54,4 @@ try:
     print(":: Selesai")
     driver.quit()
 except:
-    print(f":: Terjadi eror")
-
-
-
+    print(f":: Terjadi eror")    
