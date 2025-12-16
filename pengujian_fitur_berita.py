@@ -10,6 +10,7 @@ import os
 #setup chromedriver
 servis = Service(executable_path='chromedriver.exe')
 driver = webdriver.Chrome(service=servis)
+driver.maximize_window()
 load_web = WebDriverWait(driver, 20)
 
 
@@ -39,9 +40,10 @@ try:
 
     
     openNews = load_web.until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, ".me-2.text-red-500.font-semibold"))
+        EC.presence_of_element_located((By.CSS_SELECTOR, ".me-2.text-red-500.font-semibold"))
     )
-    driver.execute_script("arguments[0].scrollIntoView({block:' center'});", openNews)
+    
+    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", openNews)
     shoot(driver)
     time.sleep(2)
     openNews.click()
